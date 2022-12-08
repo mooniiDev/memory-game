@@ -1,9 +1,9 @@
-import "./App.css";
+import '../styles/App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="Header">Memory game</header>
+      <header className="Header">Memory Game</header>
     </div>
   );
 }
