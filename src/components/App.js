@@ -1,9 +1,14 @@
+// Components Imports
+import Header from './Header';
+
+// Styling imports
 import '../styles/App.css';
+import '../styles/Header.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="Header">Memory Game</header>
+    <div id="App">
+      <Header />
     </div>
   );
 }
