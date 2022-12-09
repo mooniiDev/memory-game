@@ -1,5 +1,7 @@
+// Packages imports
+import { string, number } from 'prop-types';
+
 function ScoreBox(props) {
-  // eslint-disable-next-line react/prop-types
   const { scoreTitle, score } = props;
   return (
     <div className="current-score-box best-score-box">
@@ -7,5 +9,10 @@ function ScoreBox(props) {
     </div>
   );
 }
+
+ScoreBox.propTypes = {
+  scoreTitle: string.isRequired,
+  score: number.isRequired,
+};
 
 export default ScoreBox;
