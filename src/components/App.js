@@ -1,6 +1,7 @@
-// Components Imports
+// Components imports
 import Header from './Header/Header';
 import Main from './Main/Main';
+import Footer from './Footer/Footer';
 
 // Styling imports
 import '../styles/App.css';
@@ -12,6 +13,7 @@ function App() {
     <div id="App">
       <Header />
       <Main />
+      <Footer />
     </div>
   );
 }
