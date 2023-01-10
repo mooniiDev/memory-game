@@ -4,7 +4,7 @@ import ScoresSection from './ScoresSection';
 
 function Header() {
   return (
-    <header id="Header">
+    <header id="Header" className="flex justify-center gap-36">
       <GameTitle />
       <ScoresSection />
     </header>
