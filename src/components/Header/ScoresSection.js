@@ -3,7 +3,7 @@ import ScoreBox from './ScoreBox';
 
 function ScoresSection() {
   return (
-    <div className="scores-section">
+    <div>
       <ScoreBox scoreTitle="Current Score" score={0} />
       <ScoreBox scoreTitle="Best Score" score={7} />
     </div>
