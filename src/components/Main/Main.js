@@ -2,6 +2,7 @@
 import GameDescription from './GameDescription';
 import Button from '../Button';
 import CardsList from './CardsList';
+import EndGameDescription from './EndGameDescription';
 
 function Main() {
   return (
@@ -13,6 +14,7 @@ function Main() {
         buttonClass="border-solid border-2 border-black"
       />
       <CardsList />
+      <EndGameDescription />
       <Button
         type="button"
         buttonText="Try Again!"
