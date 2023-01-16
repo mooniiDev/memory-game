@@ -1,11 +1,11 @@
 // Packages imports
-import { string } from 'prop-types';
+import { string, func } from 'prop-types';
 
 function Button(props) {
-  const { buttonClass, buttonText } = props;
+  const { buttonClass, buttonEvent, buttonText } = props;
 
   return (
-    <button type="button" className={buttonClass}>
+    <button type="button" className={buttonClass} onClick={buttonEvent}>
       {buttonText}
     </button>
   );
@@ -13,8 +13,9 @@ function Button(props) {
 
 // Validating prop types
 Button.propTypes = {
-  buttonText: string.isRequired,
   buttonClass: string.isRequired,
+  buttonEvent: func.isRequired,
+  buttonText: string.isRequired,
 };
 
 export default Button;
