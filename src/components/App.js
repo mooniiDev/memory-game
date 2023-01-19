@@ -8,7 +8,7 @@ import Main from './Main/Main';
 import Footer from './Footer/Footer';
 
 function App() {
-  // State of scores
+  // State of score
   const [score, setScore] = useState({
     currentScore: 0,
     bestScore: 0,
@@ -36,9 +36,17 @@ function App() {
     { name: '18', id: uniqid(), isClicked: false },
   ]);
 
-  // Update scores
-  const updateScore = () => {
-    setScore();
+  // Update score
+  const updateScore = (cardIndex) => {
+    const newScore = { ...score };
+
+    if (deck[cardIndex].isClicked === true) {
+      console.log('Unfortunately, you FAILED!');
+    } else if (deck[cardIndex].isClicked === false) {
+      newScore.currentScore += 1;
+    }
+
+    setScore(newScore);
   };
 
   // Shuffle cards
@@ -54,15 +62,15 @@ function App() {
     setDeck(shuffledDeck);
   };
 
-  // Handling card click
+  // Handle click of card
   const handleCardClick = (cardId) => {
     const cardIndex = deck.findIndex((card) => card.id === cardId);
-    const newDeck = [...deck];
+    updateScore(cardIndex);
 
+    const newDeck = [...deck];
     newDeck[cardIndex].isClicked = true;
 
     setDeck(newDeck);
-
     shuffleDeck();
   };
 
