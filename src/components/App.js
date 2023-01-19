@@ -43,7 +43,7 @@ function App() {
 
   // Function to shufle cards
   const shuffleDeck = () => {
-    const shuffledDeck = deck;
+    const shuffledDeck = [...deck];
 
     // Fisher-Yates algorithm for shuffling
     for (let i = shuffledDeck.length - 1; i > 0; i -= 1) {
@@ -55,10 +55,8 @@ function App() {
   };
 
   // Function to handle card click
-  const handleCardClick = (e) => {
-    if (e.target.getAttribute('data-button') === 'card') {
-      shuffleDeck();
-    }
+  const handleCardClick = () => {
+    shuffleDeck();
   };
 
   return (
