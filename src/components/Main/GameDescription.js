@@ -17,7 +17,6 @@ function GameDescription() {
         type="button"
         buttonClass="border-solid border-2 border-black"
         buttonText="Clarify Gameplay Instructions"
-        buttonType="clarification"
       />
 
       <h2>

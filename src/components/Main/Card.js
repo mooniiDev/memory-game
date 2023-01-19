@@ -13,7 +13,6 @@ function Card(props) {
       buttonClass="w-1/6"
       buttonEvent={handleCardClick}
       buttonText={`Plant${cardName}`}
-      buttonType="card"
     />
   );
 }

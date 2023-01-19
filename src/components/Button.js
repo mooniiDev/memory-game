@@ -2,15 +2,10 @@
 import { string, func } from 'prop-types';
 
 function Button(props) {
-  const { buttonClass, buttonEvent, buttonType, buttonText } = props;
+  const { buttonClass, buttonEvent, buttonText } = props;
 
   return (
-    <button
-      type="button"
-      className={buttonClass}
-      onClick={buttonEvent}
-      data-button={buttonType}
-    >
+    <button type="button" className={buttonClass} onClick={buttonEvent}>
       {buttonText}
     </button>
   );
@@ -20,7 +15,6 @@ function Button(props) {
 Button.propTypes = {
   buttonClass: string.isRequired,
   buttonEvent: func.isRequired,
-  buttonType: string.isRequired,
   buttonText: string.isRequired,
 };
 

@@ -17,7 +17,6 @@ function Main(props) {
         type="button"
         buttonClass="border-solid border-2 border-black"
         buttonText="Play!"
-        buttonType="play"
       />
       <CardsList handleCardClick={handleCardClick} deck={deck} />
       <EndGameDescription />
@@ -25,7 +24,6 @@ function Main(props) {
         type="button"
         buttonClass="border-solid border-2 border-black"
         buttonText="Try Again!"
-        buttonType="restart"
       />
     </main>
   );
