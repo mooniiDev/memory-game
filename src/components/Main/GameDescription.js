@@ -3,7 +3,7 @@ import Button from '../Button';
 
 function GameDescription() {
   return (
-    <div>
+    <>
       <h2>
         Forge a garden, but let not the same blossom twice.
         <br />
@@ -15,8 +15,9 @@ function GameDescription() {
 
       <Button
         type="button"
-        buttonText="Clarify Gameplay Instructions"
         buttonClass="border-solid border-2 border-black"
+        buttonText="Clarify Gameplay Instructions"
+        buttonType="clarification"
       />
 
       <h2>
@@ -26,7 +27,7 @@ function GameDescription() {
         <br />
         Collect 18 scores and become the Master of Plants!
       </h2>
-    </div>
+    </>
   );
 }
 
