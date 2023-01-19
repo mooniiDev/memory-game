@@ -5,22 +5,23 @@ import { func, string } from 'prop-types';
 import Button from '../Button';
 
 function Card(props) {
-  const { cardNumber, shuffleCards } = props;
+  const { handleCardClick, cardName } = props;
 
   return (
     <Button
       type="button"
       buttonClass="w-1/6"
-      buttonEvent={shuffleCards}
-      buttonText={`Plant${cardNumber}`}
+      buttonEvent={handleCardClick}
+      buttonText={`Plant${cardName}`}
+      buttonType="card"
     />
   );
 }
 
 // Validating prop types
 Card.propTypes = {
-  cardNumber: string.isRequired,
-  shuffleCards: func.isRequired,
+  handleCardClick: func.isRequired,
+  cardName: string.isRequired,
 };
 
 export default Card;

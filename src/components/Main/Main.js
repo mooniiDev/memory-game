@@ -1,5 +1,5 @@
 // Packages imports
-import { useState } from 'react';
+import { func, arrayOf, shape } from 'prop-types';
 
 // Components imports
 import GameDescription from './GameDescription';
@@ -7,34 +7,8 @@ import Button from '../Button';
 import CardsList from './CardsList';
 import EndGameDescription from './EndGameDescription';
 
-function Main() {
-  // State of cards
-  const [cards, setCards] = useState([
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-  ]);
-
-  // Function for shuffling and displaying cards
-  const shuffleCards = () => {
-    const shuffledCards = [...cards].sort(() => Math.random() - 0.5);
-    setCards(shuffledCards);
-  };
+function Main(props) {
+  const { handleCardClick, deck } = props;
 
   return (
     <main id="Main" className="min-h-[calc(100vh-8rem)]">
@@ -43,16 +17,24 @@ function Main() {
         type="button"
         buttonClass="border-solid border-2 border-black"
         buttonText="Play!"
+        buttonType="play"
       />
-      <CardsList shuffledCards={cards} shuffleCards={shuffleCards} />
+      <CardsList handleCardClick={handleCardClick} deck={deck} />
       <EndGameDescription />
       <Button
         type="button"
         buttonClass="border-solid border-2 border-black"
         buttonText="Try Again!"
+        buttonType="restart"
       />
     </main>
   );
 }
+
+// Validating prop types
+Main.propTypes = {
+  handleCardClick: func.isRequired,
+  deck: arrayOf(shape({})).isRequired,
+};
 
 export default Main;

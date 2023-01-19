@@ -1,17 +1,21 @@
 // Packages imports
-import { arrayOf, string, func } from 'prop-types';
+import { arrayOf, shape, func } from 'prop-types';
 
 // Components imports
 import Card from './Card';
 
 function CardsList(props) {
-  const { shuffledCards, shuffleCards } = props;
+  const { deck, handleCardClick } = props;
 
   return (
     <div>
-      {shuffledCards.map((card) => {
+      {deck.map((card) => {
         return (
-          <Card cardNumber={card} key={card} shuffleCards={shuffleCards} />
+          <Card
+            cardName={card.name}
+            key={card.id}
+            handleCardClick={handleCardClick}
+          />
         );
       })}
     </div>
@@ -19,8 +23,8 @@ function CardsList(props) {
 }
 
 CardsList.propTypes = {
-  shuffledCards: arrayOf(string).isRequired,
-  shuffleCards: func.isRequired,
+  deck: arrayOf(shape({})).isRequired,
+  handleCardClick: func.isRequired,
 };
 
 export default CardsList;
