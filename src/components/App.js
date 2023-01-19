@@ -36,12 +36,12 @@ function App() {
     { name: '18', id: uniqid(), isClicked: false },
   ]);
 
-  // Function to update scores
+  // Update scores
   const updateScore = () => {
     setScore();
   };
 
-  // Function to shufle cards
+  // Shuffle cards
   const shuffleDeck = () => {
     const shuffledDeck = [...deck];
 
@@ -54,8 +54,15 @@ function App() {
     setDeck(shuffledDeck);
   };
 
-  // Function to handle card click
-  const handleCardClick = () => {
+  // Handling card click
+  const handleCardClick = (cardId) => {
+    const cardIndex = deck.findIndex((card) => card.id === cardId);
+    const newDeck = [...deck];
+
+    newDeck[cardIndex].isClicked = true;
+
+    setDeck(newDeck);
+
     shuffleDeck();
   };
 

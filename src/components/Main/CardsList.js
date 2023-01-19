@@ -14,7 +14,7 @@ function CardsList(props) {
           <Card
             cardName={card.name}
             key={card.id}
-            handleCardClick={handleCardClick}
+            handleCardClick={() => handleCardClick(card.id)} // Pass unique ID from state as a prop
           />
         );
       })}
