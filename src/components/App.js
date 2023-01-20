@@ -41,8 +41,11 @@ function App() {
     const newScore = { ...score };
 
     if (deck[cardIndex].isClicked === true) {
-      console.log('Unfortunately, you FAILED!');
-    } else if (deck[cardIndex].isClicked === false) {
+      if (newScore.bestScore < newScore.currentScore) {
+        newScore.bestScore = newScore.currentScore;
+        newScore.currentScore = 0;
+      }
+    } else {
       newScore.currentScore += 1;
     }
 
