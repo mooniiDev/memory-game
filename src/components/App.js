@@ -8,8 +8,16 @@ import Main from './Main/Main';
 import Footer from './Footer/Footer';
 
 function App() {
+  // State of gameplay
+  const [game, setGame] = useState({
+    isStarted: true,
+    isFinished: true,
+    isFantasy: true,
+    isWon: true,
+  });
+
   // State of score
-  const [score, setScore] = useState({
+  const [scores, setScores] = useState({
     currentScore: 0,
     bestScore: 0,
   });
@@ -36,20 +44,29 @@ function App() {
     { name: '18', id: uniqid(), isClicked: false },
   ]);
 
+  // Toggle between themes of the game
+  const changeGameTheme = () => {
+    const newTheme = { ...game };
+
+    newTheme.isFantasy = !newTheme.isFantasy;
+
+    setGame(newTheme);
+  };
+
   // Update score
-  const updateScore = (cardIndex) => {
-    const newScore = { ...score };
+  const updateScores = (cardIndex) => {
+    const updatedScore = { ...scores };
 
     if (deck[cardIndex].isClicked === true) {
-      if (newScore.bestScore < newScore.currentScore) {
-        newScore.bestScore = newScore.currentScore;
-        newScore.currentScore = 0;
+      if (updatedScore.bestScore < updatedScore.currentScore) {
+        updatedScore.bestScore = updatedScore.currentScore;
+        updatedScore.currentScore = 0;
       }
     } else {
-      newScore.currentScore += 1;
+      updatedScore.currentScore += 1;
     }
 
-    setScore(newScore);
+    setScores(updatedScore);
   };
 
   // Shuffle cards
@@ -68,7 +85,7 @@ function App() {
   // Handle click of card
   const handleCardClick = (cardId) => {
     const cardIndex = deck.findIndex((card) => card.id === cardId);
-    updateScore(cardIndex);
+    updateScores(cardIndex);
 
     const newDeck = [...deck];
     newDeck[cardIndex].isClicked = true;
@@ -78,13 +95,13 @@ function App() {
   };
 
   return (
-    <div id="App" className="text-center">
-      <Header
-        currentScore={score.currentScore}
-        bestScore={score.bestScore}
-        updateScore={updateScore}
-      />
-      <Main handleCardClick={handleCardClick} deck={deck} />
+    <div id="App" className="text-center ">
+      <Header game={game} changeGameTheme={changeGameTheme} scores={scores} />
+
+      {game.isStarted ? (
+        <Main game={game} deck={deck} handleCardClick={handleCardClick} />
+      ) : null}
+
       <Footer />
     </div>
   );

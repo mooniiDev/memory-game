@@ -1,5 +1,5 @@
 // Packages imports
-import { arrayOf, shape, func } from 'prop-types';
+import { arrayOf, shape, string, bool, func } from 'prop-types';
 
 // Components imports
 import Card from './Card';
@@ -23,7 +23,14 @@ function CardsList(props) {
 }
 
 CardsList.propTypes = {
-  deck: arrayOf(shape({})).isRequired,
+  deck: arrayOf(
+    shape({
+      name: string,
+      id: string,
+      isClicked: bool,
+    })
+  ).isRequired,
+
   handleCardClick: func.isRequired,
 };
 
