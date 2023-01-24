@@ -1,13 +1,14 @@
 // Packages imports
-import { shape, bool } from 'prop-types';
+import { func, shape, bool } from 'prop-types';
 
 // Components imports
 import Button from '../Button';
 
 function EndGameDescription(props) {
-  const { game } = props;
+  const { game, playGame } = props;
   let description;
 
+  // If the game is won on a fantasy theme
   if (game.isFantasy && game.isWon) {
     description = (
       <p>
@@ -15,15 +16,21 @@ function EndGameDescription(props) {
         your expert care.
       </p>
     );
+
+    // If the game is lost on a fantasy theme
   } else if (game.isFantasy && !game.isWon) {
     description = (
       <p>
-        Alas! This seed has already been sprouted, so venture forth and try
-        again.
+        Alas! This seed has already been sprouted, therefore venture forth and
+        try again.
       </p>
     );
+
+    // If the game is won on an ordinary theme
   } else if (!game.isFantasy && game.isWon) {
     description = <p>Congratulations! You won the game.</p>;
+
+    // If a game is lost on an ordinary theme
   } else if (!game.isFantasy && !game.isWon) {
     description = <p>Failure! You lost the game.</p>;
   }
@@ -33,6 +40,7 @@ function EndGameDescription(props) {
       <Button
         type="button"
         buttonClass="border-solid border-2 border-black"
+        buttonEvent={playGame}
         buttonText={game.isFantasy ? 'Grow Again' : 'Play Again'}
       />
     </>
@@ -41,6 +49,8 @@ function EndGameDescription(props) {
 
 // Validating prop types
 EndGameDescription.propTypes = {
+  playGame: func.isRequired,
+
   game: shape({
     isStarted: bool,
     isFinished: bool,

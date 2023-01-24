@@ -8,7 +8,7 @@ import GameDescription from './GameDescription';
 import Button from '../Button';
 
 function Header(props) {
-  const { scores, game, changeGameTheme } = props;
+  const { scores, game, changeGameTheme, playGame } = props;
 
   return (
     <header id="Header">
@@ -16,12 +16,17 @@ function Header(props) {
         <GameTitle />
         <ScoresSection scores={scores} game={game} />
       </div>
-      <GameDescription game={game} changeGameTheme={changeGameTheme} />
-      <Button
-        type="button"
-        buttonClass="block mx-auto border-solid border-2 border-black"
-        buttonText={game.isFantasy ? `Grow` : `Play`}
-      />
+      {!game.isStarted ? (
+        <>
+          <GameDescription game={game} changeGameTheme={changeGameTheme} />
+          <Button
+            type="button"
+            buttonClass="block mx-auto border-solid border-2 border-black"
+            buttonEvent={playGame}
+            buttonText={game.isFantasy ? `Grow` : `Play`}
+          />
+        </>
+      ) : null}
     </header>
   );
 }
@@ -41,6 +46,7 @@ Header.propTypes = {
   }).isRequired,
 
   changeGameTheme: func.isRequired,
+  playGame: func.isRequired,
 };
 
 export default Header;

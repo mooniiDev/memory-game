@@ -6,12 +6,15 @@ import CardsList from './CardsList';
 import EndGameDescription from './EndGameDescription';
 
 function Main(props) {
-  const { handleCardClick, deck, game } = props;
+  const { playGame, handleCardClick, deck, game } = props;
 
   return (
     <main id="Main">
-      <CardsList handleCardClick={handleCardClick} deck={deck} />
-      {game.isFinished ? <EndGameDescription game={game} /> : null}
+      {!game.isFinished ? (
+        <CardsList handleCardClick={handleCardClick} deck={deck} />
+      ) : (
+        <EndGameDescription game={game} playGame={playGame} />
+      )}
     </main>
   );
 }
@@ -34,6 +37,8 @@ Main.propTypes = {
     isFantasy: bool,
     isWon: bool,
   }).isRequired,
+
+  playGame: func.isRequired,
 };
 
 export default Main;

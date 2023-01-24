@@ -10,10 +10,10 @@ import Footer from './Footer/Footer';
 function App() {
   // State of gameplay
   const [game, setGame] = useState({
-    isStarted: true,
-    isFinished: true,
+    isStarted: false,
+    isFinished: false,
     isFantasy: true,
-    isWon: true,
+    isWon: false,
   });
 
   // State of score
@@ -55,17 +55,18 @@ function App() {
 
   // Update score
   const updateScores = (cardIndex) => {
+    const newGame = { ...game };
     const updatedScore = { ...scores };
 
-    if (deck[cardIndex].isClicked === true) {
+    if (deck[cardIndex].isClicked) {
       if (updatedScore.bestScore < updatedScore.currentScore) {
         updatedScore.bestScore = updatedScore.currentScore;
-        updatedScore.currentScore = 0;
       }
     } else {
       updatedScore.currentScore += 1;
     }
 
+    setGame(newGame);
     setScores(updatedScore);
   };
 
@@ -82,12 +83,33 @@ function App() {
     setDeck(shuffledDeck);
   };
 
+  // Reset game options
+  const playGame = () => {
+    const newGame = { ...game };
+    const updatedScore = { ...scores };
+
+    newGame.isStarted = true;
+    newGame.isFinished = false;
+    updatedScore.currentScore = 0;
+
+    // Reset all values of cards clicks to false
+    const newDeck = deck.map((card) => {
+      return { ...card, isClicked: false };
+    });
+
+    shuffleDeck();
+
+    setGame(newGame);
+    setScores(updatedScore);
+    setDeck(newDeck);
+  };
+
   // Handle click of card
   const handleCardClick = (cardId) => {
     const cardIndex = deck.findIndex((card) => card.id === cardId);
-    updateScores(cardIndex);
-
     const newDeck = [...deck];
+
+    updateScores(cardIndex);
     newDeck[cardIndex].isClicked = true;
 
     setDeck(newDeck);
@@ -96,10 +118,20 @@ function App() {
 
   return (
     <div id="App" className="text-center ">
-      <Header game={game} changeGameTheme={changeGameTheme} scores={scores} />
+      <Header
+        game={game}
+        changeGameTheme={changeGameTheme}
+        playGame={playGame}
+        scores={scores}
+      />
 
       {game.isStarted ? (
-        <Main game={game} deck={deck} handleCardClick={handleCardClick} />
+        <Main
+          game={game}
+          deck={deck}
+          playGame={playGame}
+          handleCardClick={handleCardClick}
+        />
       ) : null}
 
       <Footer />
