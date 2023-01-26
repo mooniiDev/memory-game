@@ -8,32 +8,36 @@ function EndGameDescription(props) {
   const { game, playGame } = props;
   let description;
 
-  // If the game is won on a fantasy theme
-  if (game.isFantasy && game.isWon) {
-    description = (
+  if (game.isWon) {
+    description = game.isFantasy ? (
+      // If the game is won in a fantasy theme
       <p>
         Bravo! 18 rare and exotic plant species, all successfully grown under
         your expert care.
       </p>
+    ) : (
+      // If the game is won in an ordinary theme
+      <p>
+        Congratulations! You have clicked all the different cards and won the
+        game.
+      </p>
     );
-
-    // If the game is lost on a fantasy theme
-  } else if (game.isFantasy && !game.isWon) {
-    description = (
+  } else {
+    // If the game is lost in a fantasy theme
+    description = game.isFantasy ? (
       <p>
         Alas! This seed has already been sprouted, therefore venture forth and
         try again.
       </p>
+    ) : (
+      // If the game is lost in an ordinary theme
+      <p>
+        Failure! This card has already been clicked.. Guess what? You lost the
+        game.
+      </p>
     );
-
-    // If the game is won on an ordinary theme
-  } else if (!game.isFantasy && game.isWon) {
-    description = <p>Congratulations! You won the game.</p>;
-
-    // If a game is lost on an ordinary theme
-  } else if (!game.isFantasy && !game.isWon) {
-    description = <p>Failure! You lost the game.</p>;
   }
+
   return (
     <>
       {description}
@@ -52,9 +56,9 @@ EndGameDescription.propTypes = {
   playGame: func.isRequired,
 
   game: shape({
+    isFantasy: bool,
     isStarted: bool,
     isFinished: bool,
-    isFantasy: bool,
     isWon: bool,
   }).isRequired,
 };
