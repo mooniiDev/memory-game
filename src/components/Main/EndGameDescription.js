@@ -1,19 +1,19 @@
 // Packages imports
-import { func, shape, bool } from 'prop-types';
+import { func, shape, bool, arrayOf, string } from 'prop-types';
 
 // Components imports
 import Button from '../Button';
 
 function EndGameDescription(props) {
-  const { game, playGame } = props;
+  const { game, deck, playGame } = props;
   let description;
 
   if (game.isWon) {
     description = game.isFantasy ? (
       // If the game is won in a fantasy theme
       <p>
-        Bravo! 18 rare and exotic plant species, all successfully grown under
-        your expert care.
+        Bravo! {deck.length} rare and exotic plant species, all successfully
+        grown under your expert care.
       </p>
     ) : (
       // If the game is won in an ordinary theme
@@ -61,6 +61,14 @@ EndGameDescription.propTypes = {
     isFinished: bool,
     isWon: bool,
   }).isRequired,
+
+  deck: arrayOf(
+    shape({
+      name: string,
+      id: string,
+      isClicked: bool,
+    })
+  ).isRequired,
 };
 
 export default EndGameDescription;

@@ -11,7 +11,7 @@ function Main(props) {
   return (
     <main id="Main">
       {game.isFinished ? (
-        <EndGameDescription game={game} playGame={playGame} />
+        <EndGameDescription game={game} deck={deck} playGame={playGame} />
       ) : (
         <CardsList handleCardClick={handleCardClick} deck={deck} />
       )}
