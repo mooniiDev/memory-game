@@ -5,7 +5,7 @@ import { shape, bool, func } from 'prop-types';
 import Button from '../Button';
 
 function GameDescription(props) {
-  const { game, changeGameTheme } = props;
+  const { game, changeTheme } = props;
 
   // Show game description depending on the game theme
   return (
@@ -32,7 +32,7 @@ function GameDescription(props) {
       <Button
         type="button"
         buttonClass="border-solid border-2 border-black"
-        buttonEvent={changeGameTheme}
+        buttonEvent={changeTheme}
         buttonText={
           game.isFantasy
             ? 'Examine the Ordinary Game'
@@ -46,13 +46,13 @@ function GameDescription(props) {
 // Validating prop types
 GameDescription.propTypes = {
   game: shape({
+    isFantasy: bool,
     isStarted: bool,
     isFinished: bool,
-    isFantasy: bool,
     isWon: bool,
   }).isRequired,
 
-  changeGameTheme: func.isRequired,
+  changeTheme: func.isRequired,
 };
 
 export default GameDescription;

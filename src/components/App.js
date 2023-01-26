@@ -8,11 +8,11 @@ import Main from './Main/Main';
 import Footer from './Footer/Footer';
 
 function App() {
-  // State of gameplay
+  // State of game
   const [game, setGame] = useState({
+    isFantasy: true,
     isStarted: false,
     isFinished: false,
-    isFantasy: true,
     isWon: false,
   });
 
@@ -45,82 +45,92 @@ function App() {
   ]);
 
   // Toggle between themes of the game
-  const changeGameTheme = () => {
+  const changeTheme = () => {
     const newTheme = { ...game };
 
     newTheme.isFantasy = !newTheme.isFantasy;
-
     setGame(newTheme);
   };
 
-  // Update score
-  const updateScores = (cardIndex) => {
-    const newGame = { ...game };
-    const updatedScore = { ...scores };
-
-    if (deck[cardIndex].isClicked) {
-      if (updatedScore.bestScore < updatedScore.currentScore) {
-        updatedScore.bestScore = updatedScore.currentScore;
-      }
-    } else {
-      updatedScore.currentScore += 1;
-    }
-
-    setGame(newGame);
-    setScores(updatedScore);
-  };
-
   // Shuffle cards
-  const shuffleDeck = () => {
-    const shuffledDeck = [...deck];
+  const shuffleDeck = (updatedDeck) => {
+    const newDeck = [...updatedDeck];
 
     // Fisher-Yates algorithm for shuffling
-    for (let i = shuffledDeck.length - 1; i > 0; i -= 1) {
+    for (let i = newDeck.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
-      [shuffledDeck[i], shuffledDeck[j]] = [shuffledDeck[j], shuffledDeck[i]];
+      [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];
     }
 
-    setDeck(shuffledDeck);
+    setDeck(newDeck);
   };
 
-  // Reset game options
+  // Update score
+  const updateScores = (newGame) => {
+    const newScore = { ...scores };
+
+    if (newGame.isFinished) {
+      if (newGame.isWon) {
+        newScore.currentScore += 1;
+      }
+      // Update the best score if the current score is higher than the best score
+      newScore.bestScore = Math.max(newScore.bestScore, newScore.currentScore);
+    } else {
+      newScore.currentScore += 1;
+    }
+
+    setScores(newScore);
+  };
+
+  // Start a new game
   const playGame = () => {
     const newGame = { ...game };
-    const updatedScore = { ...scores };
+    const newScore = { ...scores };
 
     newGame.isStarted = true;
     newGame.isFinished = false;
-    updatedScore.currentScore = 0;
+    setGame(newGame);
+
+    newScore.currentScore = 0;
+    setScores(newScore);
 
     // Reset all values of cards clicks to false
     const newDeck = deck.map((card) => {
       return { ...card, isClicked: false };
     });
 
-    shuffleDeck();
-
-    setGame(newGame);
-    setScores(updatedScore);
+    shuffleDeck(newDeck);
     setDeck(newDeck);
   };
 
-  // Handle click of card
   const handleCardClick = (cardId) => {
     const cardIndex = deck.findIndex((card) => card.id === cardId);
     const newDeck = [...deck];
+    const newGame = { ...game };
 
-    updateScores(cardIndex);
-    newDeck[cardIndex].isClicked = true;
+    if (newDeck[cardIndex].isClicked) {
+      newGame.isFinished = true;
+      newGame.isWon = false;
+    } else {
+      newDeck[cardIndex].isClicked = true;
+    }
 
+    if (newDeck.every((card) => card.isClicked)) {
+      newGame.isFinished = true;
+      newGame.isWon = true;
+    }
+
+    setGame(newGame);
+    updateScores(newGame);
     setDeck(newDeck);
-    shuffleDeck();
+    shuffleDeck(newDeck);
   };
 
   return (
     <div id="App" className="text-center ">
       <Header
         game={game}
-        changeGameTheme={changeGameTheme}
+        changeTheme={changeTheme}
         playGame={playGame}
         scores={scores}
       />

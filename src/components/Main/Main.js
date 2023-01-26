@@ -10,10 +10,10 @@ function Main(props) {
 
   return (
     <main id="Main">
-      {!game.isFinished ? (
-        <CardsList handleCardClick={handleCardClick} deck={deck} />
-      ) : (
+      {game.isFinished ? (
         <EndGameDescription game={game} playGame={playGame} />
+      ) : (
+        <CardsList handleCardClick={handleCardClick} deck={deck} />
       )}
     </main>
   );
@@ -32,9 +32,9 @@ Main.propTypes = {
   ).isRequired,
 
   game: shape({
+    isFantasy: bool,
     isStarted: bool,
     isFinished: bool,
-    isFantasy: bool,
     isWon: bool,
   }).isRequired,
 

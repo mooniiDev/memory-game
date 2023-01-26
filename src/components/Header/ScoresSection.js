@@ -26,9 +26,9 @@ function ScoresSection(props) {
 // Validating prop types
 ScoresSection.propTypes = {
   game: shape({
+    isFantasy: bool,
     isStarted: bool,
     isFinished: bool,
-    isFantasy: bool,
     isWon: bool,
   }).isRequired,
 
