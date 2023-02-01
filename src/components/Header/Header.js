@@ -1,5 +1,5 @@
 // Packages imports
-import { shape, number, func, bool } from 'prop-types';
+import { shape, number, bool, func, arrayOf, string } from 'prop-types';
 
 // Components imports
 import GameTitle from './GameTitle';
@@ -8,7 +8,7 @@ import GameDescription from './GameDescription';
 import Button from '../Button';
 
 function Header(props) {
-  const { scores, game, changeTheme, playGame } = props;
+  const { scores, game, changeTheme, deck, playGame } = props;
 
   return (
     <header id="Header">
@@ -18,7 +18,7 @@ function Header(props) {
       </div>
       {!game.isStarted ? (
         <>
-          <GameDescription game={game} changeTheme={changeTheme} />
+          <GameDescription game={game} changeTheme={changeTheme} deck={deck} />
           <Button
             type="button"
             buttonClass="block mx-auto border-solid border-2 border-black"
@@ -46,6 +46,15 @@ Header.propTypes = {
   }).isRequired,
 
   changeTheme: func.isRequired,
+
+  deck: arrayOf(
+    shape({
+      name: string,
+      id: string,
+      isClicked: bool,
+    })
+  ).isRequired,
+
   playGame: func.isRequired,
 };
 

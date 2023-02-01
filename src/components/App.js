@@ -1,5 +1,5 @@
 // Packages imports
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import uniqid from 'uniqid';
 
 // Components imports
@@ -44,42 +44,45 @@ function App() {
     { name: '18', id: uniqid(), isClicked: false },
   ]);
 
-  // Toggle between themes of the game
+  // Toggle between themed texts of the game
   const changeTheme = () => {
-    const newTheme = { ...game };
-
-    newTheme.isFantasy = !newTheme.isFantasy;
-    setGame(newTheme);
+    setGame((prevGame) => {
+      return { ...prevGame, isFantasy: !prevGame.isFantasy };
+    });
   };
 
-  // Shuffle cards
-  const shuffleDeck = (updatedDeck) => {
-    const newDeck = [...updatedDeck];
+  const shuffleDeck = () => {
+    setDeck((prevDeck) => {
+      const newDeck = [...prevDeck];
 
-    // Fisher-Yates algorithm for shuffling
-    for (let i = newDeck.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];
-    }
-
-    setDeck(newDeck);
-  };
-
-  // Update score
-  const updateScores = (newGame) => {
-    const newScore = { ...scores };
-
-    if (newGame.isFinished) {
-      if (newGame.isWon) {
-        newScore.currentScore += 1;
+      // Fisher-Yates algorithm for shuffling
+      for (let i = prevDeck.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];
       }
-      // Update the best score if the current score is higher than the best score
-      newScore.bestScore = Math.max(newScore.bestScore, newScore.currentScore);
-    } else {
-      newScore.currentScore += 1;
-    }
 
-    setScores(newScore);
+      return newDeck;
+    });
+  };
+
+  // Shuffle the deck if a new game has started/ended and if 1 point has been scored
+  useEffect(() => {
+    shuffleDeck();
+  }, [game.isStarted, game.isFinished, scores.currentScore]);
+
+  // Start a new game
+  const playGame = () => {
+    setGame((prevGame) => {
+      return { ...prevGame, isStarted: true, isFinished: false };
+    });
+
+    setScores((prevScores) => {
+      return { ...prevScores, currentScore: 0 };
+    });
+
+    setDeck((prevDeck) => [
+      ...prevDeck.map((card) => ({ ...card, isClicked: false })),
+    ]);
   };
 
   // Start a new game
@@ -94,42 +97,47 @@ function App() {
     newScore.currentScore = 0;
     setScores(newScore);
 
-    // Reset all values of cards clicks to false
-    const newDeck = deck.map((card) => {
-      return { ...card, isClicked: false };
+  const handleGameEnd = (isWon) => {
+    setGame((prevGame) => {
+      if (isWon) {
+        return { ...prevGame, isFinished: true, isWon };
+      }
+      return { ...prevGame, isFinished: true, isWon: false };
     });
-
-    shuffleDeck(newDeck);
-    setDeck(newDeck);
   };
 
+  // Check that all cards have been successfully clicked
+  useEffect(() => {
+    const allCardsClicked = deck.every((card) => card.isClicked);
+
+    // Set the end of the game as won
+    if (allCardsClicked) {
+      handleGameEnd(true);
+    }
+  }, [deck]);
+
+  // Track card click
   const handleCardClick = (cardId) => {
-    const cardIndex = deck.findIndex((card) => card.id === cardId);
-    const newDeck = [...deck];
-    const newGame = { ...game };
+    setDeck((prevDeck) => {
+      const card = prevDeck.find((item) => item.id === cardId);
 
-    if (newDeck[cardIndex].isClicked) {
-      newGame.isFinished = true;
-      newGame.isWon = false;
-    } else {
-      newDeck[cardIndex].isClicked = true;
-    }
-
-    if (newDeck.every((card) => card.isClicked)) {
-      newGame.isFinished = true;
-      newGame.isWon = true;
-    }
-
-    setGame(newGame);
-    updateScores(newGame);
-    setDeck(newDeck);
-    shuffleDeck(newDeck);
+      // Make a card clicked if it has not been clicked before
+      if (!card.isClicked) {
+        return prevDeck.map((item) =>
+          item.id === cardId ? { ...item, isClicked: true } : item
+        );
+      }
+      // If a card has already been clicked - set the end of the game as lost
+      handleGameEnd(false);
+      return prevDeck;
+    });
   };
 
   return (
     <div id="App" className="text-center ">
       <Header
         game={game}
+        deck={deck}
         changeTheme={changeTheme}
         playGame={playGame}
         scores={scores}

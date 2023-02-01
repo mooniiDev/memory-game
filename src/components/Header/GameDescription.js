@@ -1,11 +1,11 @@
 // Packages imports
-import { shape, bool, func } from 'prop-types';
+import { shape, bool, func, arrayOf, string } from 'prop-types';
 
 // Components imports
 import Button from '../Button';
 
 function GameDescription(props) {
-  const { game, changeTheme } = props;
+  const { game, changeTheme, deck } = props;
 
   // Show game description depending on the game theme
   return (
@@ -16,8 +16,8 @@ function GameDescription(props) {
           <br />
           A bounty of rare and exotic plant seedlings await your cultivation.
           <br />
-          Successfully grow 18 of them and ascend to the throne of the Floral
-          Master!
+          Successfully grow {deck.length} of them and ascend to the throne of
+          the Floral Master!
         </h2>
       ) : (
         <h2>
@@ -25,7 +25,7 @@ function GameDescription(props) {
           <br />
           Each correct choice gives you 1 point.
           <br />
-          Score 18 points and win the game!
+          Score {deck.length} points and win the game!
         </h2>
       )}
 
@@ -53,6 +53,14 @@ GameDescription.propTypes = {
   }).isRequired,
 
   changeTheme: func.isRequired,
+
+  deck: arrayOf(
+    shape({
+      name: string,
+      id: string,
+      isClicked: bool,
+    })
+  ).isRequired,
 };
 
 export default GameDescription;
