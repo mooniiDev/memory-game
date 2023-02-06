@@ -1,5 +1,5 @@
 // Packages imports
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import uniqid from 'uniqid';
 
 // Components imports
@@ -10,13 +10,13 @@ import Footer from './Footer/Footer';
 function App() {
   // State of game
   const [game, setGame] = useState({
-    isFantasy: true,
+    isFantasyMode: true,
     isStarted: false,
     isFinished: false,
     isWon: false,
   });
 
-  // State of score
+  // State of scores
   const [scores, setScores] = useState({
     currentScore: 0,
     bestScore: 0,
@@ -44,11 +44,24 @@ function App() {
     { name: '18', id: uniqid(), isClicked: false },
   ]);
 
-  // Toggle between themed texts of the game
-  const changeTheme = () => {
+  // Toggle between modes of the game
+  const toggleFantasyMode = () => {
     setGame((prevGame) => {
-      return { ...prevGame, isFantasy: !prevGame.isFantasy };
+      return { ...prevGame, isFantasyMode: !prevGame.isFantasyMode };
     });
+  };
+
+  // Start a new game
+  const playGame = () => {
+    setGame((prevGame) => {
+      return { ...prevGame, isStarted: true, isFinished: false };
+    });
+    setScores((prevScores) => {
+      return { ...prevScores, currentScore: 0 };
+    });
+    setDeck((prevDeck) => [
+      ...prevDeck.map((card) => ({ ...card, isClicked: false })),
+    ]);
   };
 
   const shuffleDeck = () => {
@@ -60,74 +73,72 @@ function App() {
         const j = Math.floor(Math.random() * (i + 1));
         [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];
       }
-
       return newDeck;
     });
   };
 
-  // Shuffle the deck if a new game has started/ended and if 1 point has been scored
+  // Shuffle the deck when a new game is started
+  // or when the current score is updated
   useEffect(() => {
     shuffleDeck();
-  }, [game.isStarted, game.isFinished, scores.currentScore]);
+  }, [game.isStarted, scores.currentScore]);
 
-  // Start a new game
-  const playGame = () => {
-    setGame((prevGame) => {
-      return { ...prevGame, isStarted: true, isFinished: false };
-    });
-
-    setScores((prevScores) => {
-      return { ...prevScores, currentScore: 0 };
-    });
-
-    setDeck((prevDeck) => [
-      ...prevDeck.map((card) => ({ ...card, isClicked: false })),
-    ]);
-  };
-
-  // Start a new game
-  const playGame = () => {
-    const newGame = { ...game };
-    const newScore = { ...scores };
-
-    newGame.isStarted = true;
-    newGame.isFinished = false;
-    setGame(newGame);
-
-    newScore.currentScore = 0;
-    setScores(newScore);
-
-  const handleGameEnd = (isWon) => {
-    setGame((prevGame) => {
-      if (isWon) {
-        return { ...prevGame, isFinished: true, isWon };
-      }
-      return { ...prevGame, isFinished: true, isWon: false };
+  // If a card was successfully clicked,
+  // one point is added to the current score
+  const addPointToCurrentScore = () => {
+    setScores(({ currentScore }) => {
+      return {
+        ...scores,
+        currentScore: currentScore + 1,
+      };
     });
   };
+
+  const updateBestScore = () => {
+    setScores((prevScores) => ({
+      ...prevScores,
+      // Compare the two values
+      // and assign the higher value to the best score
+      bestScore: Math.max(prevScores.currentScore, prevScores.bestScore),
+    }));
+  };
+
+  // Set a game either won or lost
+  const handleGameEnd = useCallback((isWon) => {
+    updateBestScore();
+
+    setGame((prevGame) => {
+      return {
+        ...prevGame,
+        isFinished: true,
+        isWon,
+      };
+    });
+  }, []);
 
   // Check that all cards have been successfully clicked
+  const allCardsClicked = deck.every((item) => item.isClicked);
   useEffect(() => {
-    const allCardsClicked = deck.every((card) => card.isClicked);
-
-    // Set the end of the game as won
     if (allCardsClicked) {
+      // The "true" argument means that the game is won
       handleGameEnd(true);
     }
-  }, [deck]);
+  }, [allCardsClicked, handleGameEnd]);
 
   // Track card click
   const handleCardClick = (cardId) => {
     setDeck((prevDeck) => {
       const card = prevDeck.find((item) => item.id === cardId);
 
-      // Make a card clicked if it has not been clicked before
+      // If a card has not been clicked before
       if (!card.isClicked) {
+        addPointToCurrentScore();
+        // Make a card to be clicked
         return prevDeck.map((item) =>
           item.id === cardId ? { ...item, isClicked: true } : item
         );
       }
-      // If a card has already been clicked - set the end of the game as lost
+      // The "false" argument means that the game is lost
       handleGameEnd(false);
       return prevDeck;
     });
@@ -138,7 +149,7 @@ function App() {
       <Header
         game={game}
         deck={deck}
-        changeTheme={changeTheme}
+        toggleFantasyMode={toggleFantasyMode}
         playGame={playGame}
         scores={scores}
       />

@@ -9,28 +9,28 @@ function EndGameDescription(props) {
   let description;
 
   if (game.isWon) {
-    description = game.isFantasy ? (
-      // If the game is won in a fantasy theme
+    description = game.isFantasyMode ? (
+      // If the game is won in a fantasy mode
       <p>
         Bravo! {deck.length} rare and exotic plant species, all successfully
         grown under your expert care.
       </p>
     ) : (
-      // If the game is won in an ordinary theme
+      // If the game is won in an ordinary mode
       <p>
         Congratulations! You have clicked all the different cards and won the
         game.
       </p>
     );
   } else {
-    // If the game is lost in a fantasy theme
-    description = game.isFantasy ? (
+    // If the game is lost in a fantasy mode
+    description = game.isFantasyMode ? (
       <p>
         Alas! This seed has already been sprouted, therefore venture forth and
         try again.
       </p>
     ) : (
-      // If the game is lost in an ordinary theme
+      // If the game is lost in an ordinary mode
       <p>
         Failure! This card has already been clicked.. Guess what? You lost the
         game.
@@ -45,7 +45,7 @@ function EndGameDescription(props) {
         type="button"
         buttonClass="border-solid border-2 border-black"
         buttonEvent={playGame}
-        buttonText={game.isFantasy ? 'Grow Again' : 'Play Again'}
+        buttonText={game.isFantasyMode ? 'Grow Again' : 'Play Again'}
       />
     </>
   );
@@ -56,7 +56,7 @@ EndGameDescription.propTypes = {
   playGame: func.isRequired,
 
   game: shape({
-    isFantasy: bool,
+    isFantasyMode: bool,
     isStarted: bool,
     isFinished: bool,
     isWon: bool,

@@ -5,12 +5,12 @@ import { shape, bool, func, arrayOf, string } from 'prop-types';
 import Button from '../Button';
 
 function GameDescription(props) {
-  const { game, changeTheme, deck } = props;
+  const { game, toggleFantasyMode, deck } = props;
 
-  // Show game description depending on the game theme
+  // Show game description depending on the game mode
   return (
     <>
-      {game.isFantasy ? (
+      {game.isFantasyMode ? (
         <h2>
           Forge a garden where no two blooms are ever the same.
           <br />
@@ -32,9 +32,9 @@ function GameDescription(props) {
       <Button
         type="button"
         buttonClass="border-solid border-2 border-black"
-        buttonEvent={changeTheme}
+        buttonEvent={toggleFantasyMode}
         buttonText={
-          game.isFantasy
+          game.isFantasyMode
             ? 'Examine the Ordinary Game'
             : 'Rejoin the Fantasy Realm'
         }
@@ -46,13 +46,13 @@ function GameDescription(props) {
 // Validating prop types
 GameDescription.propTypes = {
   game: shape({
-    isFantasy: bool,
+    isFantasyMode: bool,
     isStarted: bool,
     isFinished: bool,
     isWon: bool,
   }).isRequired,
 
-  changeTheme: func.isRequired,
+  toggleFantasyMode: func.isRequired,
 
   deck: arrayOf(
     shape({

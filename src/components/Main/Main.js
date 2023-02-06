@@ -32,7 +32,7 @@ Main.propTypes = {
   ).isRequired,
 
   game: shape({
-    isFantasy: bool,
+    isFantasyMode: bool,
     isStarted: bool,
     isFinished: bool,
     isWon: bool,

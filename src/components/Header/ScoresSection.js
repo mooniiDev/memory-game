@@ -11,12 +11,12 @@ function ScoresSection(props) {
     <div className="flex gap-10">
       <ScoreBox
         scoreTitle={
-          game.isFantasy ? 'Currently Growing Plants' : 'Current Score'
+          game.isFantasyMode ? 'Currently Growing Plants' : 'Current Score'
         }
         score={scores.currentScore}
       />
       <ScoreBox
-        scoreTitle={game.isFantasy ? 'Best Grown Plants' : 'Best Score'}
+        scoreTitle={game.isFantasyMode ? 'Best Grown Plants' : 'Best Score'}
         score={scores.bestScore}
       />
     </div>
@@ -26,7 +26,7 @@ function ScoresSection(props) {
 // Validating prop types
 ScoresSection.propTypes = {
   game: shape({
-    isFantasy: bool,
+    isFantasyMode: bool,
     isStarted: bool,
     isFinished: bool,
     isWon: bool,

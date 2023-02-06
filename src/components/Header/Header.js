@@ -8,7 +8,7 @@ import GameDescription from './GameDescription';
 import Button from '../Button';
 
 function Header(props) {
-  const { scores, game, changeTheme, deck, playGame } = props;
+  const { scores, game, toggleFantasyMode, deck, playGame } = props;
 
   return (
     <header id="Header">
@@ -18,12 +18,16 @@ function Header(props) {
       </div>
       {!game.isStarted ? (
         <>
-          <GameDescription game={game} changeTheme={changeTheme} deck={deck} />
+          <GameDescription
+            game={game}
+            toggleFantasyMode={toggleFantasyMode}
+            deck={deck}
+          />
           <Button
             type="button"
             buttonClass="block mx-auto border-solid border-2 border-black"
             buttonEvent={playGame}
-            buttonText={game.isFantasy ? `Grow` : `Play`}
+            buttonText={game.isFantasyMode ? `Grow` : `Play`}
           />
         </>
       ) : null}
@@ -39,13 +43,13 @@ Header.propTypes = {
   }).isRequired,
 
   game: shape({
-    isFantasy: bool,
+    isFantasyMode: bool,
     isStarted: bool,
     isFinished: bool,
     isWon: bool,
   }).isRequired,
 
-  changeTheme: func.isRequired,
+  toggleFantasyMode: func.isRequired,
 
   deck: arrayOf(
     shape({
