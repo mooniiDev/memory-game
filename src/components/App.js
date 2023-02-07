@@ -28,14 +28,14 @@ function App() {
   const [deck, setDeck] = useState(cards);
 
   // Toggle between modes of the game
-  const toggleFantasyMode = () => {
+  const handleFantasyMode = () => {
     setGame((prevGame) => {
       return { ...prevGame, isFantasyMode: !prevGame.isFantasyMode };
     });
   };
 
   // Start a new game
-  const playGame = () => {
+  const handlePlayGame = () => {
     setGame((prevGame) => {
       return { ...prevGame, isStarted: true, isFinished: false };
     });
@@ -77,11 +77,11 @@ function App() {
     });
   };
 
+  // Compare the two values
+  // and assign the higher value to the best score
   const updateBestScore = () => {
     setScores((prevScores) => ({
       ...prevScores,
-      // Compare the two values
-      // and assign the higher value to the best score
       bestScore: Math.max(prevScores.currentScore, prevScores.bestScore),
     }));
   };
@@ -132,8 +132,8 @@ function App() {
       <Header
         game={game}
         deck={deck}
-        toggleFantasyMode={toggleFantasyMode}
-        playGame={playGame}
+        handleFantasyMode={handleFantasyMode}
+        handlePlayGame={handlePlayGame}
         scores={scores}
       />
 
@@ -141,7 +141,7 @@ function App() {
         <Main
           game={game}
           deck={deck}
-          playGame={playGame}
+          handlePlayGame={handlePlayGame}
           handleCardClick={handleCardClick}
         />
       ) : null}

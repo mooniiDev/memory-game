@@ -5,7 +5,7 @@ import { shape, bool, func, arrayOf, string } from 'prop-types';
 import Button from '../Button';
 
 function GameDescription(props) {
-  const { game, toggleFantasyMode, deck } = props;
+  const { game, handleFantasyMode, deck } = props;
 
   // Show game description depending on the game mode
   return (
@@ -32,7 +32,7 @@ function GameDescription(props) {
       <Button
         type="button"
         buttonClass="border-solid border-2 border-black"
-        buttonEvent={toggleFantasyMode}
+        buttonEvent={handleFantasyMode}
         buttonText={
           game.isFantasyMode
             ? 'Examine the Ordinary Game'
@@ -52,7 +52,7 @@ GameDescription.propTypes = {
     isWon: bool,
   }).isRequired,
 
-  toggleFantasyMode: func.isRequired,
+  handleFantasyMode: func.isRequired,
 
   deck: arrayOf(
     shape({

@@ -6,12 +6,16 @@ import CardsList from './CardsList';
 import EndGameDescription from './EndGameDescription';
 
 function Main(props) {
-  const { playGame, handleCardClick, deck, game } = props;
+  const { handlePlayGame, handleCardClick, deck, game } = props;
 
   return (
     <main id="Main">
       {game.isFinished ? (
-        <EndGameDescription game={game} deck={deck} playGame={playGame} />
+        <EndGameDescription
+          game={game}
+          deck={deck}
+          handlePlayGame={handlePlayGame}
+        />
       ) : (
         <CardsList handleCardClick={handleCardClick} deck={deck} />
       )}
@@ -38,7 +42,7 @@ Main.propTypes = {
     isWon: bool,
   }).isRequired,
 
-  playGame: func.isRequired,
+  handlePlayGame: func.isRequired,
 };
 
 export default Main;

@@ -5,7 +5,7 @@ import { func, shape, bool, arrayOf, string } from 'prop-types';
 import Button from '../Button';
 
 function EndGameDescription(props) {
-  const { game, deck, playGame } = props;
+  const { game, deck, handlePlayGame } = props;
   let description;
 
   if (game.isWon) {
@@ -44,7 +44,7 @@ function EndGameDescription(props) {
       <Button
         type="button"
         buttonClass="border-solid border-2 border-black"
-        buttonEvent={playGame}
+        buttonEvent={handlePlayGame}
         buttonText={game.isFantasyMode ? 'Grow Again' : 'Play Again'}
       />
     </>
@@ -53,7 +53,7 @@ function EndGameDescription(props) {
 
 // Validating prop types
 EndGameDescription.propTypes = {
-  playGame: func.isRequired,
+  handlePlayGame: func.isRequired,
 
   game: shape({
     isFantasyMode: bool,
