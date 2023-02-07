@@ -1,11 +1,13 @@
 // Packages imports
 import { useState, useEffect, useCallback } from 'react';
-import uniqid from 'uniqid';
 
 // Components imports
 import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
+
+// Cards imports
+import cards from '../utils/cards';
 
 function App() {
   // State of game
@@ -22,27 +24,8 @@ function App() {
     bestScore: 0,
   });
 
-  // State of cards
-  const [deck, setDeck] = useState([
-    { name: '1', id: uniqid(), isClicked: false },
-    { name: '2', id: uniqid(), isClicked: false },
-    { name: '3', id: uniqid(), isClicked: false },
-    { name: '4', id: uniqid(), isClicked: false },
-    { name: '5', id: uniqid(), isClicked: false },
-    { name: '6', id: uniqid(), isClicked: false },
-    { name: '7', id: uniqid(), isClicked: false },
-    { name: '8', id: uniqid(), isClicked: false },
-    { name: '9', id: uniqid(), isClicked: false },
-    { name: '10', id: uniqid(), isClicked: false },
-    { name: '11', id: uniqid(), isClicked: false },
-    { name: '12', id: uniqid(), isClicked: false },
-    { name: '13', id: uniqid(), isClicked: false },
-    { name: '14', id: uniqid(), isClicked: false },
-    { name: '15', id: uniqid(), isClicked: false },
-    { name: '16', id: uniqid(), isClicked: false },
-    { name: '17', id: uniqid(), isClicked: false },
-    { name: '18', id: uniqid(), isClicked: false },
-  ]);
+  // State of cards declared in '../utils/cards'
+  const [deck, setDeck] = useState(cards);
 
   // Toggle between modes of the game
   const toggleFantasyMode = () => {

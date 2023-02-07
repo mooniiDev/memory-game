@@ -56,7 +56,7 @@ GameDescription.propTypes = {
 
   deck: arrayOf(
     shape({
-      name: string,
+      image: string,
       id: string,
       isClicked: bool,
     })

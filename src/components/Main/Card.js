@@ -1,26 +1,20 @@
 // Packages imports
 import { func, string } from 'prop-types';
 
-// Components imports
-import Button from '../Button';
-
 function Card(props) {
-  const { handleCardClick, cardName } = props;
+  const { handleCardClick, cardImage } = props;
 
   return (
-    <Button
-      type="button"
-      buttonClass="w-1/6"
-      buttonEvent={handleCardClick}
-      buttonText={`Plant${cardName}`}
-    />
+    <button type="button" className="w-1/6" onClick={handleCardClick}>
+      <img src={cardImage} alt="Card of Plant" />
+    </button>
   );
 }
 
 // Validating prop types
 Card.propTypes = {
   handleCardClick: func.isRequired,
-  cardName: string.isRequired,
+  cardImage: string.isRequired,
 };
 
 export default Card;

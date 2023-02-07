@@ -12,7 +12,7 @@ function CardsList(props) {
       {deck.map((card) => {
         return (
           <Card
-            cardName={card.name}
+            cardImage={card.image}
             key={card.id}
             handleCardClick={() => handleCardClick(card.id)} // Pass unique ID from state as a prop
           />
@@ -25,7 +25,7 @@ function CardsList(props) {
 CardsList.propTypes = {
   deck: arrayOf(
     shape({
-      name: string,
+      image: string,
       id: string,
       isClicked: bool,
     })
