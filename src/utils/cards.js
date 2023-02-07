@@ -21,7 +21,8 @@ import card16 from '../assets/cards/card16.png';
 import card17 from '../assets/cards/card17.png';
 import card18 from '../assets/cards/card18.png';
 
-const cards = [
+// Cards declaration
+const cardsData = [
   { image: card01, id: uniqid(), isClicked: false },
   { image: card02, id: uniqid(), isClicked: false },
   { image: card03, id: uniqid(), isClicked: false },
@@ -42,4 +43,4 @@ const cards = [
   { image: card18, id: uniqid(), isClicked: false },
 ];
 
-export default cards;
+export default cardsData;

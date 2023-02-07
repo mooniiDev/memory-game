@@ -7,25 +7,39 @@ import Main from './Main/Main';
 import Footer from './Footer/Footer';
 
 // Cards imports
-import cards from '../utils/cards';
+import cardsData from '../utils/cards';
 
 function App() {
-  // State of game
-  const [game, setGame] = useState({
+  // Default game data
+  const gameData = {
     isFantasyMode: true,
     isStarted: false,
     isFinished: false,
     isWon: false,
-  });
+  };
 
-  // State of scores
-  const [scores, setScores] = useState({
+  // Default scores data
+  const scoresData = {
     currentScore: 0,
     bestScore: 0,
-  });
+  };
 
-  // State of cards declared in '../utils/cards'
-  const [deck, setDeck] = useState(cards);
+  // Game state with initial defaults
+  const [game, setGame] = useState(gameData);
+
+  // Scores state with initial defaults
+  const [scores, setScores] = useState(scoresData);
+
+  // Cards state with initial defaults from '../utils/cards'
+  const [deck, setDeck] = useState(cardsData);
+
+  // Go to the home page
+  // and change the game, score and card data to the initial defaults
+  const handleGoToHomePage = () => {
+    setGame(gameData);
+    setScores(scoresData);
+    setDeck(cardsData);
+  };
 
   // Toggle between modes of the game
   const handleFantasyMode = () => {
@@ -130,6 +144,7 @@ function App() {
   return (
     <div id="App" className="text-center ">
       <Header
+        handleGoToHomePage={handleGoToHomePage}
         game={game}
         deck={deck}
         handleFantasyMode={handleFantasyMode}

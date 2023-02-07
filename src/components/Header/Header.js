@@ -8,12 +8,19 @@ import GameDescription from './GameDescription';
 import Button from '../Button';
 
 function Header(props) {
-  const { scores, game, handleFantasyMode, deck, handlePlayGame } = props;
+  const {
+    handleGoToHomePage,
+    scores,
+    game,
+    handleFantasyMode,
+    deck,
+    handlePlayGame,
+  } = props;
 
   return (
     <header id="Header">
       <div className="flex justify-evenly">
-        <GameTitle />
+        <GameTitle handleGoToHomePage={handleGoToHomePage} />
         <ScoresSection scores={scores} game={game} />
       </div>
       {!game.isStarted ? (
@@ -37,6 +44,8 @@ function Header(props) {
 
 // Validating prop types
 Header.propTypes = {
+  handleGoToHomePage: func.isRequired,
+
   scores: shape({
     currentScore: number,
     bestScore: number,
