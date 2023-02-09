@@ -142,7 +142,7 @@ function App() {
   };
 
   return (
-    <div id="App" className="text-center ">
+    <div id="App" className="text-center font-lato">
       <Header
         handleGoToHomePage={handleGoToHomePage}
         game={game}

@@ -11,22 +11,22 @@ function GameDescription(props) {
   return (
     <>
       {game.isFantasyMode ? (
-        <h2>
+        <p>
           Forge a garden where no two blooms are ever the same.
           <br />
           A bounty of rare and exotic plant seedlings await your cultivation.
           <br />
           Successfully grow {deck.length} of them and ascend to the throne of
           the Floral Master!
-        </h2>
+        </p>
       ) : (
-        <h2>
+        <p>
           Choose a card, but don&apos;t click on the same one twice.
           <br />
           Each correct choice gives you 1 point.
           <br />
           Score {deck.length} points and win the game!
-        </h2>
+        </p>
       )}
 
       <Button

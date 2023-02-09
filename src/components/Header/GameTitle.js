@@ -1,19 +1,16 @@
 // Packages imports
 import { func } from 'prop-types';
 
-// Components imports
-import Button from '../Button';
+// Logo import
+import logo from '../../assets/logo.png';
 
 function GameTitle(props) {
   const { handleGoToHomePage } = props;
 
   return (
-    <Button
-      type="button"
-      buttonClass="block"
-      buttonEvent={handleGoToHomePage}
-      buttonText="MEMORY GAME"
-    />
+    <button type="button" onClick={handleGoToHomePage}>
+      <img src={logo} alt="Memory Game Logo" />
+    </button>
   );
 }
 

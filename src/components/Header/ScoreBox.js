@@ -6,7 +6,7 @@ function ScoreBox(props) {
 
   return (
     <div>
-      {scoreTitle}: <span>{score}</span>
+      {scoreTitle}: <span className="font-alice">{score}</span>
     </div>
   );
 }
