@@ -1,15 +1,13 @@
 // Packages imports
-import { shape, bool, func, arrayOf, string } from 'prop-types';
-
-// Components imports
-import Button from '../Button';
+import { shape, bool, arrayOf, string } from 'prop-types';
 
 function GameDescription(props) {
-  const { game, handleFantasyMode, deck } = props;
+  const { game, deck } = props;
 
   // Show game description depending on the game mode
   return (
-    <>
+    <div>
+      {/* If the game has fantasy mode, show fantasy text */}
       {game.isFantasyMode ? (
         <p>
           Forge a garden where no two blooms are ever the same.
@@ -20,6 +18,7 @@ function GameDescription(props) {
           the Floral Master!
         </p>
       ) : (
+        // If the game hasn't fantasy mode, show ordinary text
         <p>
           Choose a card, but don&apos;t click on the same one twice.
           <br />
@@ -28,18 +27,7 @@ function GameDescription(props) {
           Score {deck.length} points and win the game!
         </p>
       )}
-
-      <Button
-        type="button"
-        buttonClass="border-solid border-2 border-black"
-        buttonEvent={handleFantasyMode}
-        buttonText={
-          game.isFantasyMode
-            ? 'Examine the Ordinary Game'
-            : 'Rejoin the Fantasy Realm'
-        }
-      />
-    </>
+    </div>
   );
 }
 
@@ -51,8 +39,6 @@ GameDescription.propTypes = {
     isFinished: bool,
     isWon: bool,
   }).isRequired,
-
-  handleFantasyMode: func.isRequired,
 
   deck: arrayOf(
     shape({

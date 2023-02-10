@@ -146,21 +146,15 @@ function App() {
       <Header
         handleGoToHomePage={handleGoToHomePage}
         game={game}
+        scores={scores}
+      />
+      <Main
+        game={game}
         deck={deck}
         handleFantasyMode={handleFantasyMode}
         handlePlayGame={handlePlayGame}
-        scores={scores}
+        handleCardClick={handleCardClick}
       />
-
-      {game.isStarted ? (
-        <Main
-          game={game}
-          deck={deck}
-          handlePlayGame={handlePlayGame}
-          handleCardClick={handleCardClick}
-        />
-      ) : null}
-
       <Footer />
     </div>
   );

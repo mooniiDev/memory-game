@@ -1,36 +1,33 @@
 // Packages imports
-import { func, shape, bool, arrayOf, string } from 'prop-types';
-
-// Components imports
-import Button from '../Button';
+import { shape, bool, arrayOf, string } from 'prop-types';
 
 function EndGameDescription(props) {
-  const { game, deck, handlePlayGame } = props;
+  const { game, deck } = props;
   let description;
 
   if (game.isWon) {
     description = game.isFantasyMode ? (
-      // If the game is won in a fantasy mode
+      // If the game was won in fantasy mode
       <p>
         Bravo! {deck.length} rare and exotic plant species, all successfully
         grown under your expert care.
       </p>
     ) : (
-      // If the game is won in an ordinary mode
+      // If the game was won in ordinary mode
       <p>
         Congratulations! You have clicked all the different cards and won the
         game.
       </p>
     );
   } else {
-    // If the game is lost in a fantasy mode
+    // If the game was lost in fantasy mode
     description = game.isFantasyMode ? (
       <p>
         Alas! This seed has already been sprouted, therefore venture forth and
         try again.
       </p>
     ) : (
-      // If the game is lost in an ordinary mode
+      // If the game was lost in ordinary mode
       <p>
         Failure! This card has already been clicked.. Guess what? You lost the
         game.
@@ -38,23 +35,11 @@ function EndGameDescription(props) {
     );
   }
 
-  return (
-    <>
-      {description}
-      <Button
-        type="button"
-        buttonClass="border-solid border-2 border-black"
-        buttonEvent={handlePlayGame}
-        buttonText={game.isFantasyMode ? 'Grow Again' : 'Play Again'}
-      />
-    </>
-  );
+  return <div>{description}</div>;
 }
 
 // Validating prop types
 EndGameDescription.propTypes = {
-  handlePlayGame: func.isRequired,
-
   game: shape({
     isFantasyMode: bool,
     isStarted: bool,

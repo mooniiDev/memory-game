@@ -4,7 +4,7 @@ import { func } from 'prop-types';
 // Logo import
 import logo from '../../assets/logo.png';
 
-function GameTitle(props) {
+function GameLogo(props) {
   const { handleGoToHomePage } = props;
 
   return (
@@ -15,8 +15,8 @@ function GameTitle(props) {
 }
 
 // Validating prop types
-GameTitle.propTypes = {
+GameLogo.propTypes = {
   handleGoToHomePage: func.isRequired,
 };
 
-export default GameTitle;
+export default GameLogo;
