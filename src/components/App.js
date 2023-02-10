@@ -142,7 +142,10 @@ function App() {
   };
 
   return (
-    <div id="App" className="text-center font-lato">
+    <div
+      id="App"
+      className="relative flex min-h-screen flex-col text-center font-lato"
+    >
       <Header
         handleGoToHomePage={handleGoToHomePage}
         game={game}
