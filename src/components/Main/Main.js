@@ -26,7 +26,7 @@ function Main(props) {
           {/* Show a button to toggle between themes of the game */}
           <Button
             type="button"
-            buttonClass="w-56 mt-9 py-1 px-3 border-solid border border-yellow-cream rounded-xl transition duration-300 ease-in-out drop-shadow-md hover:text-green-dark hover:bg-yellow-cream"
+            buttonClass="w-56 mt-5 py-1 px-3 border-solid border border-yellow-cream rounded-xl transition duration-300 ease-in-out drop-shadow-md hover:text-green-dark hover:bg-yellow-cream"
             buttonEvent={handleFantasyMode}
             buttonText={
               game.isFantasyMode

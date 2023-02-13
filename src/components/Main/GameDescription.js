@@ -6,7 +6,7 @@ function GameDescription(props) {
 
   // Show game description depending on the game mode
   return (
-    <div className="m-auto w-4/5 rounded-xl bg-green-super-dark p-5 text-lg drop-shadow-md">
+    <div className="m-auto w-10/12 rounded-xl bg-green-super-dark p-4 text-lg drop-shadow-md">
       {/* If the game has fantasy mode, show fantasy text */}
       {game.isFantasyMode ? (
         <p>
