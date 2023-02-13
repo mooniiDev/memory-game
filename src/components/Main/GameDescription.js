@@ -11,9 +11,9 @@ function GameDescription(props) {
       {game.isFantasyMode ? (
         <p>
           Forge a garden where no two blooms are ever the same.
-          <p className="text-green-light">∽∾∽</p>A bounty of rare and exotic
-          plant seedlings await your cultivation.
-          <p className="text-green-light">∽∾∽</p>
+          <p className="text-green-light">∾</p>A bounty of rare and exotic plant
+          seedlings await your cultivation.
+          <p className="text-green-light">∾</p>
           Successfully grow {deck.length} of them and ascend to the throne of
           the Floral Master!
         </p>
@@ -21,9 +21,9 @@ function GameDescription(props) {
         // If the game hasn't fantasy mode, show ordinary text
         <p>
           Choose a card, but don&apos;t click on the same one twice.
-          <p className="text-green-light">∽∾∽</p>
+          <p className="text-green-light">∾</p>
           Each correct choice gives you 1 point.
-          <p className="text-green-light">∽∾∽</p>
+          <p className="text-green-light">∾</p>
           Score {deck.length} points and win the game!
         </p>
       )}
