@@ -7,7 +7,4 @@
     @apply bg-green-dark;
     @apply text-yellow-cream;
   }
-  p {
-    @apply text-xl;
-  }
 }
