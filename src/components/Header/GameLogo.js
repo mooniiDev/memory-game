@@ -8,7 +8,11 @@ function GameLogo(props) {
   const { handleGoToHomePage } = props;
 
   return (
-    <button type="button" onClick={handleGoToHomePage}>
+    <button
+      type="button"
+      onClick={handleGoToHomePage}
+      className="self-center py-6"
+    >
       <img src={logo} alt="Memory Game Logo" />
     </button>
   );

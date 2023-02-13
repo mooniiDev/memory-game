@@ -8,6 +8,7 @@ module.exports = {
         lato: ['Lato', 'sans-serif'],
       },
       colors: {
+        'green-super-dark': '#0c2f29',
         'green-dark': '#10332d',
         'green-light': '#29534e',
         'yellow-cream': '#ede6cc',
