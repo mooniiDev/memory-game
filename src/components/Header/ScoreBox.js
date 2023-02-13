@@ -5,8 +5,11 @@ function ScoreBox(props) {
   const { scoreTitle, score } = props;
 
   return (
-    <div>
-      {scoreTitle}: <span className="font-alice">{score}</span>
+    <div className="py-0.5">
+      {scoreTitle}
+      <span className="ml-2 inline-block w-9 rounded-xl bg-green-light pb-0.5 font-alice text-2xl drop-shadow-md">
+        {score}
+      </span>
     </div>
   );
 }

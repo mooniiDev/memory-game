@@ -26,7 +26,7 @@ function Main(props) {
           {/* Show a button to toggle between themes of the game */}
           <Button
             type="button"
-            buttonClass="border-solid border-2 border-black"
+            buttonClass="w-56 mt-9 py-1 px-3 border-solid border border-yellow-cream rounded-xl transition duration-300 ease-in-out drop-shadow-md hover:text-green-dark hover:bg-yellow-cream"
             buttonEvent={handleFantasyMode}
             buttonText={
               game.isFantasyMode
@@ -37,7 +37,7 @@ function Main(props) {
           {/* Show a button to start the game */}
           <Button
             type="button"
-            buttonClass="block mx-auto border-solid border-2 border-black"
+            buttonClass="block w-56 mx-auto mt-3 py-1 px-3 border-solid border border-yellow-cream rounded-xl transition duration-300 ease-in-out text-green-dark bg-yellow-cream drop-shadow-md hover:text-yellow-cream hover:bg-green-dark"
             buttonEvent={handlePlayGame}
             buttonText={game.isFantasyMode ? `Grow` : `Play`}
           />

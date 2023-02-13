@@ -8,15 +8,13 @@ function ScoresSection(props) {
   const { game, scores } = props;
 
   return (
-    <div className="flex gap-10">
+    <div className="flex flex-col text-lg">
       <ScoreBox
-        scoreTitle={
-          game.isFantasyMode ? 'Currently Growing Plants' : 'Current Score'
-        }
+        scoreTitle={game.isFantasyMode ? 'Currently Growing' : 'Current Score'}
         score={scores.currentScore}
       />
       <ScoreBox
-        scoreTitle={game.isFantasyMode ? 'Best Grown Plants' : 'Best Score'}
+        scoreTitle={game.isFantasyMode ? 'Best Grown' : 'Best Score'}
         score={scores.bestScore}
       />
     </div>
