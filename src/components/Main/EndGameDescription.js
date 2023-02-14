@@ -9,33 +9,52 @@ function EndGameDescription(props) {
     description = game.isFantasyMode ? (
       // If the game was won in fantasy mode
       <p>
-        Bravo! {deck.length} rare and exotic plant species, all successfully
-        grown under your expert care.
+        <span className="font-alice text-2xl">Bravo!</span>
+        <br />
+        <span className="text-green-light">∾</span>
+        <br />
+        All {deck.length} unique and mysterious plant species thrive and bloom
+        under your expert care.
       </p>
     ) : (
       // If the game was won in ordinary mode
       <p>
-        Congratulations! You have clicked all the different cards and won the
-        game.
+        <span className="font-alice text-2xl">Congratulations!</span>
+        <br />
+        <span className="text-green-light">∾</span>
+        <br />
+        You have clicked all {deck.length} different cards and won the game.
       </p>
     );
   } else {
     // If the game was lost in fantasy mode
     description = game.isFantasyMode ? (
       <p>
-        Alas! This seed has already been sprouted, therefore venture forth and
-        try again.
+        <span className="font-alice text-2xl">Curses!</span>
+        <br />
+        <span className="text-green-light">∾</span>
+        <br />
+        This seed has already been sprouted, therefore rekindle your spirit and
+        venture forth once more.
       </p>
     ) : (
       // If the game was lost in ordinary mode
       <p>
-        Failure! This card has already been clicked.. Guess what? You lost the
-        game.
+        <span className="font-alice text-2xl">Failure!</span>
+        <br />
+        <span className="text-green-light">∾</span>
+        <br />
+        This card has already been clicked and you lost the game. Next time you
+        will focus better!
       </p>
     );
   }
 
-  return <div>{description}</div>;
+  return (
+    <div className="m-auto w-10/12 rounded-xl bg-green-super-dark px-4 py-6 text-xl drop-shadow-md">
+      {description}
+    </div>
+  );
 }
 
 // Validating prop types
