@@ -20,6 +20,8 @@ import card15 from '../assets/cards/card15.png';
 import card16 from '../assets/cards/card16.png';
 import card17 from '../assets/cards/card17.png';
 import card18 from '../assets/cards/card18.png';
+import card19 from '../assets/cards/card19.png';
+import card20 from '../assets/cards/card20.png';
 
 // Cards declaration
 const cardsData = [
@@ -41,6 +43,8 @@ const cardsData = [
   { image: card16, id: uniqid(), isClicked: false },
   { image: card17, id: uniqid(), isClicked: false },
   { image: card18, id: uniqid(), isClicked: false },
+  { image: card19, id: uniqid(), isClicked: false },
+  { image: card20, id: uniqid(), isClicked: false },
 ];
 
 export default cardsData;
