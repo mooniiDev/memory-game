@@ -6,14 +6,18 @@ function GameDescription(props) {
 
   // Show game description depending on the game mode
   return (
-    <div className="m-auto w-10/12 rounded-xl bg-green-super-dark p-4 text-lg drop-shadow-md">
+    <div className="m-auto w-10/12 rounded-xl bg-green-super-dark px-4 py-6 text-xl drop-shadow-md">
       {/* If the game has fantasy mode, show fantasy text */}
       {game.isFantasyMode ? (
         <p>
           Forge a garden where no two blooms are ever the same.
-          <p className="text-green-light">∾</p>A bounty of rare and exotic plant
-          seedlings await your cultivation.
-          <p className="text-green-light">∾</p>
+          <br />
+          <span className="text-green-light">∾</span>
+          <br />
+          A bounty of rare and exotic plant seedlings await your cultivation.
+          <br />
+          <span className="text-green-light">∾</span>
+          <br />
           Successfully grow {deck.length} of them and ascend to the throne of
           the Floral Master!
         </p>

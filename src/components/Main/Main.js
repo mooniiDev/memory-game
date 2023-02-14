@@ -13,7 +13,7 @@ function Main(props) {
     props;
 
   return (
-    <main id="Main">
+    <main id="Main" className="mb-5">
       {/* If the game hasn't started yet */}
       {!game.isStarted && (
         <>
@@ -26,7 +26,7 @@ function Main(props) {
           {/* Show a button to toggle between themes of the game */}
           <Button
             type="button"
-            buttonClass="w-56 mt-5 py-1 px-3 border-solid border border-yellow-cream rounded-xl transition duration-300 ease-in-out drop-shadow-md hover:text-green-dark hover:bg-yellow-cream"
+            buttonClass="w-72 mt-6 py-2 px-3 text-lg border-solid border border-yellow-cream rounded-xl transition duration-400 ease-in-out drop-shadow-md active:text-green-dark active:bg-yellow-cream"
             buttonEvent={handleFantasyMode}
             buttonText={
               game.isFantasyMode
@@ -37,7 +37,7 @@ function Main(props) {
           {/* Show a button to start the game */}
           <Button
             type="button"
-            buttonClass="block w-56 mx-auto mt-3 py-1 px-3 border-solid border border-yellow-cream rounded-xl transition duration-300 ease-in-out text-green-dark bg-yellow-cream drop-shadow-md hover:text-yellow-cream hover:bg-green-dark"
+            buttonClass="block w-72 mx-auto mt-4 py-2 px-3 border-solid border border-yellow-cream rounded-xl transition duration-400 ease-in-out text-green-dark bg-yellow-cream drop-shadow-md active:text-yellow-cream active:bg-green-dark"
             buttonEvent={handlePlayGame}
             buttonText={game.isFantasyMode ? `Grow` : `Play`}
           />
