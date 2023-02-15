@@ -13,7 +13,7 @@ function Main(props) {
     props;
 
   return (
-    <main id="Main" className="mb-5">
+    <main id="Main" className="mb-5 md:mx-10 lg:w-2/4 lg:self-center">
       {/* If the game hasn't started yet */}
       {!game.isStarted && (
         <>
@@ -26,18 +26,18 @@ function Main(props) {
           {/* Show a button to toggle between themes of the game */}
           <Button
             type="button"
-            buttonClass="w-72 mt-6 py-2 px-3 text-lg border-solid border border-yellow-cream rounded-xl transition duration-400 ease-in-out drop-shadow-md active:text-green-dark active:bg-yellow-cream"
+            buttonClass="w-80 mt-8 py-2 px-4 text-xl border-solid border border-yellow-cream rounded-xl transition duration-400 ease-in-out drop-shadow-md active:text-green-dark active:bg-yellow-cream lg:hover:text-green-dark lg:hover:bg-yellow-cream"
             buttonEvent={handleFantasyMode}
             buttonText={
               game.isFantasyMode
-                ? 'Examine the Ordinary Game'
+                ? 'Examine the Ordinary Rules'
                 : 'Rejoin the Fantasy Realm'
             }
           />
           {/* Show a button to start the game */}
           <Button
             type="button"
-            buttonClass="block w-72 mx-auto mt-4 py-2 px-3 border-solid border border-yellow-cream rounded-xl transition duration-400 ease-in-out text-green-dark bg-yellow-cream drop-shadow-md active:text-yellow-cream active:bg-green-dark"
+            buttonClass="block w-80 mx-auto mt-4 py-2 px-4 text-xl border-solid border border-yellow-cream rounded-xl transition duration-400 ease-in-out text-green-dark bg-yellow-cream drop-shadow-md lg:hover:text-yellow-cream lg:hover:bg-green-dark"
             buttonEvent={handlePlayGame}
             buttonText={game.isFantasyMode ? `Grow` : `Play`}
           />
@@ -61,7 +61,7 @@ function Main(props) {
           {/* Show a button to play the game again */}
           <Button
             type="button"
-            buttonClass="border-solid border-2 border-black"
+            buttonClass="block w-72 mx-auto mt-6 py-2 px-3 text-xl border-solid border border-yellow-cream rounded-xl transition duration-400 ease-in-out text-green-dark bg-yellow-cream drop-shadow-md active:text-yellow-cream active:bg-green-dark lg:hover:text-yellow-cream lg:hover:bg-green-dark"
             buttonEvent={handlePlayGame}
             buttonText={game.isFantasyMode ? 'Grow Again' : 'Play Again'}
           />

@@ -8,7 +8,7 @@ function ScoresSection(props) {
   const { game, scores } = props;
 
   return (
-    <div className="flex flex-col text-xl">
+    <div className="flex flex-col justify-center text-xl md:flex-row md:gap-5 md:self-center">
       <ScoreBox
         scoreTitle={game.isFantasyMode ? 'Currently Growing' : 'Current Score'}
         score={scores.currentScore}

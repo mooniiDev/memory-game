@@ -11,7 +11,7 @@ function GameLogo(props) {
     <button
       type="button"
       onClick={handleGoToHomePage}
-      className="self-center py-6"
+      className="mx-10 my-8 self-center"
     >
       <img src={logo} alt="Memory Game Logo" />
     </button>

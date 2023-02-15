@@ -9,7 +9,10 @@ function Header(props) {
   const { game, scores, handleGoToHomePage } = props;
 
   return (
-    <header id="Header" className="mb-6 flex flex-col">
+    <header
+      id="Header"
+      className="mb-6 flex flex-col md:flex-row md:justify-evenly lg:mb-0"
+    >
       <GameLogo handleGoToHomePage={handleGoToHomePage} />
       <ScoresSection scores={scores} game={game} />
     </header>

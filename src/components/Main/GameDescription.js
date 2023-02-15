@@ -6,7 +6,7 @@ function GameDescription(props) {
 
   // Show game description depending on the game mode
   return (
-    <div className="m-auto w-10/12 rounded-xl bg-green-super-dark px-4 py-6 text-xl drop-shadow-md">
+    <div className="lg:px-25 m-auto w-80 rounded-xl bg-green-super-dark px-4 py-6 text-xl drop-shadow-md md:w-8/12 lg:w-3/5 lg:py-16">
       {/* If the game has fantasy mode, show fantasy text */}
       {game.isFantasyMode ? (
         <p>
@@ -14,7 +14,8 @@ function GameDescription(props) {
           <br />
           <span className="text-green-light">∾</span>
           <br />
-          A bounty of rare and exotic plant seedlings await your cultivation.
+          A bounty of unique and mysterious plant seedlings await your
+          cultivation.
           <br />
           <span className="text-green-light">∾</span>
           <br />
@@ -25,9 +26,13 @@ function GameDescription(props) {
         // If the game hasn't fantasy mode, show ordinary text
         <p>
           Choose a card, but don&apos;t click on the same one twice.
-          <p className="text-green-light">∾</p>
+          <br />
+          <span className="text-green-light">∾</span>
+          <br />
           Each correct choice gives you 1 point.
-          <p className="text-green-light">∾</p>
+          <br />
+          <span className="text-green-light">∾</span>
+          <br />
           Score {deck.length} points and win the game!
         </p>
       )}
