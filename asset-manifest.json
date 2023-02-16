@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/memory-game/static/css/main.85575071.css",
-    "main.js": "/memory-game/static/js/main.1591353b.js",
+    "main.css": "/memory-game/static/css/main.4a1d90b8.css",
+    "main.js": "/memory-game/static/js/main.975988f2.js",
     "static/media/card02.png": "/memory-game/static/media/card02.08d635733ca90688b9ec.png",
     "static/media/card12.png": "/memory-game/static/media/card12.c3665fec0db8232f3b2d.png",
     "static/media/card08.png": "/memory-game/static/media/card08.f9bcbf79be08b8265cef.png",
@@ -19,14 +19,16 @@
     "static/media/card10.png": "/memory-game/static/media/card10.a9535a814905662b4078.png",
     "static/media/card05.png": "/memory-game/static/media/card05.e0e3100609c1396c8976.png",
     "static/media/card18.png": "/memory-game/static/media/card18.28542468956f1fa6178a.png",
+    "static/media/card19.png": "/memory-game/static/media/card19.863d63f872e20f074081.png",
+    "static/media/card20.png": "/memory-game/static/media/card20.0a74fb89f7df2c7481bb.png",
     "static/media/card15.png": "/memory-game/static/media/card15.d7c1016f1b27bba9d91a.png",
     "static/media/logo.png": "/memory-game/static/media/logo.bd3f1411572b9945ca46.png",
     "index.html": "/memory-game/index.html",
-    "main.85575071.css.map": "/memory-game/static/css/main.85575071.css.map",
-    "main.1591353b.js.map": "/memory-game/static/js/main.1591353b.js.map"
+    "main.4a1d90b8.css.map": "/memory-game/static/css/main.4a1d90b8.css.map",
+    "main.975988f2.js.map": "/memory-game/static/js/main.975988f2.js.map"
   },
   "entrypoints": [
-    "static/css/main.85575071.css",
-    "static/js/main.1591353b.js"
+    "static/css/main.4a1d90b8.css",
+    "static/js/main.975988f2.js"
   ]
 }
