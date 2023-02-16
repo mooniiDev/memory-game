@@ -58,9 +58,11 @@ Memory game project, created with [React](https://reactjs.org/) library and styl
 - [uniqid](https://www.npmjs.com/package/uniqid) package
 - [Google Fonts](https://fonts.google.com/)
 
-<img alt="Homepage Interface" src="https://user-images.githubusercontent.com/51089302/219116315-fca014bf-9987-4295-8e5c-c279edf1414a.png" width="30%" align="top">
-&emsp;
-<img alt="Game Interface" src="https://user-images.githubusercontent.com/51089302/219343703-f8004da4-fa20-44c5-95de-b424c32501eb.png" width="30%">
+<p align="left">
+  <img alt="Homepage Interface" src="https://user-images.githubusercontent.com/51089302/219116315-fca014bf-9987-4295-8e5c-c279edf1414a.png" width="200" >
+  &emsp;
+  <img alt="Game Interface" src="https://user-images.githubusercontent.com/51089302/219343703-f8004da4-fa20-44c5-95de-b424c32501eb.png" width="200">
+</p>
 
 <p align="right">⬆️ <a href="#top">Back to top</a></p>
 
