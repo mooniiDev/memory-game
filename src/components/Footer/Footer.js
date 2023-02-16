@@ -2,7 +2,7 @@ function Footer() {
   return (
     <footer
       id="Footer"
-      className="bottom-0 left-0 right-0 m-auto mb-5  w-80  rounded-xl bg-green-light py-2 text-xl drop-shadow-md"
+      className="bottom-0 left-0 right-0 m-auto mb-8 w-80 rounded-xl bg-green-light py-2 text-xl drop-shadow-md"
     >
       <p className="pb-0.5">
         ☽ Crafted by&nbsp;

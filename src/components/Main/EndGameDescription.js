@@ -50,7 +50,7 @@ function EndGameDescription(props) {
   }
 
   return (
-    <div className="lg:px-25 m-auto w-10/12 rounded-xl bg-green-super-dark px-4 py-6 text-xl drop-shadow-md md:w-8/12 lg:w-2/5 lg:py-10">
+    <div className="m-auto w-10/12 rounded-xl bg-green-super-dark px-4 py-6 text-xl drop-shadow-md md:w-8/12 lg:w-2/5 lg:py-10">
       {description}
     </div>
   );
